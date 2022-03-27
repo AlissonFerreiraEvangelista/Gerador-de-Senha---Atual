@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GeradorDeSenhaApplication<gerador_de_senha>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.com.geradordesenha.gerador_de_senha.GeradorDeSenhaApplication",
+            "projectName": "gerador_de_senha",
+            "args": ""
+        }
+    ]
+}

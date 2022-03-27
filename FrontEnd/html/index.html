@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Gerador de Senhas</title>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="container-grupo">
+                <section>
+                    <h1>Gere uma senha</h1>
+                    <h4>Gere uma senha segura imediatamente</h3>
+                </section>
+                <div class="form">
+                    <div class="gerasenha">
+                        <div class="lbl">
+                            <input type="text"  class="input_pass" id="password" v-model="password">
+                        </div>
+                    </div>
+                    <div class="container_btn">
+                        <div class="div_btn">
+                            <button class="btn" id="btn-copy" title="Copiar" v-on:click="copiar">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="div_btn" >
+                                <button class="btn" id="atualizar" title="Gerar Senha" v-on:click="novoPassword" >
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-group" v-if="podeExibirLista">
+                <div class="group-pass" v-for="item in listaSalva">
+                    <div class="group-icon">
+                        <div class="icon"><button class="btn-icon" v-on:click="editar(item.id)"><i class="fas fa-edit"></i></button></div>
+                        <div class="icon"><button class="btn-icon" v-on:click="deletar(item.id)"><i class="fas fa-trash-alt"></i></button></div>
+                   </div>
+                    <div class="lbl-resultado" >
+                      <a href="#" v-on:click="detalhes(item.id)">{{item.nomeAplicativo}}</a>
+                    </div>
+                </div>
+                <div class="group-form">
+                    <button type="submit" class="btn-submit" v-on:click="criarNovo">
+                        <i class="fas fa-plus-circle" title="adicionar"></i>
+                    </button>
+                </div>    
+            </div>
+        </div>
+        <div class="formulario" id="formulario" v-if="podeExibirformulario">
+            <div class="div-input">
+                <label>Login</label>
+                <input type="text" name="Login" id="Login" v-model="aplicativo.login" class="input"  required>
+            </div>
+            <div class="div-input">
+                <label>Nome do Aplicativo</label>
+                <input type="text" name="nomeAplicativo" v-model="aplicativo.nomeAplicativo" id="nomeAplicativo" class="input" required>
+            </div>
+            <div class="div-input">
+                <label>URL</label>
+                <input type="text" name="Url" id="Url" v-model="aplicativo.url" class="input" >
+            </div>
+           
+            <div class="div-input">
+                <label>Senha</label>
+                <input type="password" name="Senha" id="Senha" v-model="aplicativo.senha" class="input"  required>
+            </div>
+            <div>
+                <input type="hidden" id="id" name="id" />
+            </div>  
+            <div class="btn-default"> 
+                <div class="input-submit">
+                    <input type="button" value="Voltar" v-on:click="exibirLista" class="input-default">
+                </div>
+            </div>
+        </div>
+
+        <div class="formulario" id="detalhes" v-if="podeExibirDetalhes">
+            <div class="div-input">
+                <label>Login</label>
+                <input type="text" id="Login" class="input" v-model="aplicativo.login">
+            </div>
+            <div class="div-input">
+                <label>Nome do Aplicativo</label>
+                <input type="text" class="input" v-model="aplicativo.nomeAplicativo">
+            </div>
+            <div class="div-input">
+                <label>URL</label>
+                <input type="text" class="input" v-model="aplicativo.url">
+            </div>
+            <div class="div-input">
+                <label>Senha</label>
+                <input type="text" class="input" v-model="aplicativo.senha">
+            </div>
+            <div class="btn-default">    
+                <div class="input-submit">
+                    <input type="submit" value="Salvar" v-on:click="salvar" class="input-default">
+                </div>
+                <div class="input-submit">
+                    <input type="button" value="Voltar" v-on:click="exibirLista" class="input-default" >
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</body>
+
+<script src="../js/script.js"></script>
+</html>
